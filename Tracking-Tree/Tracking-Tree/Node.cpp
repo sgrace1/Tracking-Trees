@@ -1,5 +1,6 @@
 //
 // Created by owen on 12/8/18.
+// Modified by Spencer
 //
 
 #include <iostream>
@@ -11,6 +12,7 @@
 //#include <hash>
 
 using namespace std;
+using std::vector;
 
 Node::Node() 
 {
@@ -50,21 +52,31 @@ string Node::getKey() {
 }
 
 
-/*void Node::build(long size, Node* & subtree)
+void Node::build(vector<string> vtemp)					//this doesnt work
 {
-	if (size == 0)
+	typedef map<string, Node& >::const_iterator MapIterator;
+	for (MapIterator iter = MAP.begin(); iter != MAP.end(); iter++)
 	{
-		subtree = NULL;
+		
+		for (int i = 0; i < vtemp.size(); i++)
+		{
+			cout << "Key: " << &iter->second << endl << "Values:" << endl;
+			cout << " " << vtemp[i] << endl;
+		}
 	}
-	else
-	{
-		subtree = new Node(string RAWE);
-		btEntry_++;
-		build(leftSize, &subtree->LMAP);
-		build(rightSize, &subtree->RMAP);
-	}
+}
+/*
+void Node::build(vector<string> vtemp)					//this doesnt work
+{
+typedef map<string, Node& >::const_iterator MapIterator;
+for (int i = 0; i < vtemp.size(); i++)
+{
+cout << "Key: " << &iter->second << endl << "Values:" << vtemp[i] << endl;
+i++;
+}
+}
 
-	*/
+*/
 
 void Node::addChild(string cRAWE)
 {
