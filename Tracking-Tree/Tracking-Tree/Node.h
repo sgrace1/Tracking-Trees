@@ -1,8 +1,8 @@
 //
-// Created by Owen on 12/8/18.
-// Modified by Spencer
+// Created by owen on 12/8/18.
+// Modified by Spencer and Ryan
 //
- 
+
 #ifndef BINARYTREE_NODE_H
 #define BINARYTREE_NODE_H
 
@@ -12,12 +12,9 @@
 #include <stdio.h>      
 #include <stdlib.h>     
 #include <time.h>
-#include <list>
-#include<vector>
 
 using std::string;
 using std::map;
-using std::vector;
 
 class Node {
 public:
@@ -28,7 +25,10 @@ public:
     void addRightChild(string cRAWE);
     static string generateKey();
     string getKey();
-	void build(vector<string> vtemp);
+    void display(std::ostream& outfile);
+    void displayLeft(std::ostream & outfile, BinaryNode * subtree, std::string prefix);
+    void displayRight(std::ostream & outfile, BinaryNode * subtree, std::string prefix);
+	//void build(long size, Node* & subtree);
 private:
 	map<string, Node&> MAP;
 	map<string, Node&> LMAP;
