@@ -67,7 +67,7 @@ string Node::getKey() {
 
 	*/
 
-Node::display(std::ostream& outfile) const
+void Node::display(std::ostream& outfile) const
 {
     std::string prefix;
     if (tree_ == NULL)
