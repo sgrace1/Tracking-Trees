@@ -1,6 +1,6 @@
 //
 // Created by owen on 12/8/18.
-// Modified by Spencer
+// Modified by Spencer and Ryan
 //
 
 #include <iostream>
@@ -12,7 +12,6 @@
 //#include <hash>
 
 using namespace std;
-using std::vector;
 
 Node::Node() 
 {
@@ -52,31 +51,64 @@ string Node::getKey() {
 }
 
 
-void Node::build(vector<string> vtemp)					//this doesnt work
+/*void Node::build(long size, Node* & subtree)
 {
-	typedef map<string, Node& >::const_iterator MapIterator;
-	for (MapIterator iter = MAP.begin(); iter != MAP.end(); iter++)
+	if (size == 0)
 	{
-		
-		for (int i = 0; i < vtemp.size(); i++)
-		{
-			cout << "Key: " << &iter->second << endl << "Values:" << endl;
-			cout << " " << vtemp[i] << endl;
-		}
+		subtree = NULL;
 	}
-}
-/*
-void Node::build(vector<string> vtemp)					//this doesnt work
+	else
+	{
+		subtree = new Node(string RAWE);
+		btEntry_++;
+		build(leftSize, &subtree->LMAP);
+		build(rightSize, &subtree->RMAP);
+	}
+
+	*/
+
+Node::display(std::ostream& outfile) const
 {
-typedef map<string, Node& >::const_iterator MapIterator;
-for (int i = 0; i < vtemp.size(); i++)
-{
-cout << "Key: " << &iter->second << endl << "Values:" << vtemp[i] << endl;
-i++;
-}
+    std::string prefix;
+    if (tree_ == NULL)
+    {
+        outfile << "-" << std::endl;
+    }
+    else
+    {
+        displayLeft(outfile, tree_->left_, "    ");
+        outfile << "---" << tree_->entry_ << std::endl;
+        displayRight(outfile, tree_->right_, "    ");
+    }
 }
 
-*/
+void Node::displayLeft(std::ostream & outfile, BinaryNode * subtree, std::string prefix)
+{
+    if (subtree == NULL)
+    {
+        outfile << prefix + "/" << std::endl;
+    }
+    else
+    {
+        displayLeft(outfile, subtree->left_, prefix + "     ");
+        outfile << prefix + "/---" << subtree->entry_ << std::endl;
+        displayRight(outfile, subtree->right_, prefix + "|    ");
+    }
+}
+
+void Node::displayRight(std::ostream & outfile, BinaryNode * subtree, std::string prefix)
+{
+    if (subtree == NULL)
+    {
+        outfile << prefix + "\\" << std::endl;
+    }
+    else
+    {
+        displayLeft(outfile, subtree->left_, prefix + "|    ");
+        outfile << prefix + "\\---" << subtree->entry_ << std::endl;
+        displayRight(outfile, subtree->right_, prefix + "     ");
+    }
+}
 
 void Node::addChild(string cRAWE)
 {
